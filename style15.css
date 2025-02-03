@@ -1,0 +1,42 @@
+body {
+    background-color: rgb(245, 234, 220);
+}
+
+.form15 {
+    font-family: Georgia;
+    text-align: center;
+    font-size: 25px;
+    color: rosybrown;
+}
+
+.group15 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    font-size: 23px;
+    color: sienna;
+}
+
+.image15 {
+    display: inline-block;
+    width: 600px;
+    height: 600px;
+    border-radius: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle;
+    background-position: center center;
+    background-size: auto;
+}
+
+.text15 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 30px;
+    color: sienna;
+    padding-top: 10%;
+    padding-right: 175px;
+    float: right;
+}
