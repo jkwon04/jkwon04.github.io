@@ -41,3 +41,14 @@ body {
     padding-right: 170px;
     float: right;
 }
+
+.home-button {
+    position: absolute; /* Change to 'fixed' if you want it to stay on scroll */
+    top: 20px; /* Adjust top spacing */
+    right: 20px; /* Adjust right spacing */
+    padding: 10px 20px;
+    color: sienna;
+    font-size: 50px;
+    font-weight: bold;
+    text-decoration: none;
+}

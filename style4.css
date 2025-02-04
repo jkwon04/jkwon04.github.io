@@ -29,14 +29,25 @@ body {
     overflow: hidden;
     vertical-align: middle;
     background-position: center center;
-    background-size: auto;
+    background-size: cover;
 }
 
 .text4 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 30px;
     color: sienna;
-    padding-top: 10%;
+    padding-top: 8%;
     padding-right: 150px;
     float: right;
+}
+
+.home-button {
+    position: absolute; /* Change to 'fixed' if you want it to stay on scroll */
+    top: 20px; /* Adjust top spacing */
+    right: 20px; /* Adjust right spacing */
+    padding: 10px 20px;
+    color: sienna;
+    font-size: 50px;
+    font-weight: bold;
+    text-decoration: none;
 }
