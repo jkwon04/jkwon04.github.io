@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dot Reveal Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: beige;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            position: relative;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+        .dot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: black;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .dot img {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 15pt;
+            font-family: "Times New Roman", serif;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="grid"></div>
+    <div class="message" id="completionMessage">Congratulations! You have completed the painting!</div>
+
+    <script>
+        const container = document.getElementById("grid");
+        const message = document.getElementById("completionMessage");
+        const imageUrl = "images/pearl.jpg"; // Ensure this path is correct
+        const dotSize = 50;
+        let totalDots = 0;
+        let clickedDots = 0;
+
+        function createDots() {
+            const cols = Math.floor(window.innerWidth / dotSize);
+            const rows = Math.floor(window.innerHeight / dotSize);
+            totalDots = cols * rows;
+            clickedDots = 0; // Reset clickedDots count on resize
+
+            container.style.gridTemplateColumns = `repeat(${cols}, ${dotSize}px)`;
+            container.style.gridTemplateRows = `repeat(${rows}, ${dotSize}px)`;
+            container.innerHTML = "";
+
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    const dot = document.createElement("div");
+                    dot.classList.add("dot");
+
+                    const img = document.createElement("img");
+                    img.src = imageUrl;
+                    img.style.transform = `translate(-${col * dotSize}px, -${row * dotSize}px)`;
+
+                    dot.appendChild(img);
+                    dot.addEventListener("click", () => {
+                        if (img.style.opacity !== "1") {
+                            img.style.opacity = "1"; // Reveal image smoothly
+                            clickedDots++;
+                            checkCompletion();
+                        }
+                    });
+
+                    container.appendChild(dot);
+                }
+            }
+
+            const gridWidth = cols * dotSize;
+            const gridHeight = rows * dotSize;
+            const offsetX = (window.innerWidth - gridWidth) / 2;
+            const offsetY = (window.innerHeight - gridHeight) / 2;
+            container.style.marginLeft = `${offsetX}px`;
+            container.style.marginTop = `${offsetY}px`;
+        }
+
+        function checkCompletion() {
+            if (clickedDots === totalDots) {
+                setTimeout(() => {
+                    container.style.display = "none"; // Hide dots
+                    message.style.display = "block"; // Show completion message
+                    document.body.style.background = "black";
+                }, 500);
+            }
+        }
+
+        window.onload = createDots;
+        window.onresize = () => {
+            createDots();
+        };
+    </script>
+</body>
+</html>
